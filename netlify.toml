@@ -1,0 +1,10 @@
+# Statisches Hosting für die Manus-Therapie Akademie SPA (Netlify / Cloudflare Pages)
+[build]
+  command = "pnpm build:static"
+  publish = "dist/public"
+
+# SPA-Fallback: alle Routen (z. B. /impressum, /datenschutz) auf index.html
+[[redirects]]
+  from = "/*"
+  to = "/index.html"
+  status = 200

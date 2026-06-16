@@ -1,0 +1,24 @@
+# Dependencies
+node_modules/
+
+# Build-Output
+dist/
+
+# Manus-Debug-Logs (Reste der alten Infrastruktur, werden nicht mehr erzeugt)
+.manus-logs/
+
+# Logs
+*.log
+npm-debug.log*
+pnpm-debug.log*
+
+# Env
+.env
+.env.local
+.env.*.local
+
+# Betriebssystem / Editor
+.DS_Store
+*.swp
+.idea/
+.vscode/

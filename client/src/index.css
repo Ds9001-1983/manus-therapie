@@ -1,0 +1,256 @@
+@import "tailwindcss";
+@import "tw-animate-css";
+
+@custom-variant dark (&:is(.dark *));
+
+/*
+ * DESIGN PHILOSOPHY: "Manus Gold"
+ * Luxuriöse Autorität – Gold, Schwarz, Reinweiß
+ * Primärfarbe: Tiefes Schwarz (#0D0D0D)
+ * Hintergrund: Reinweiß (#FFFFFF) mit warmem Off-White (#FAFAF8)
+ * Akzent: Manus-Gold (#C9A84C) – satt, warm, edel
+ * Highlight: Helles Gold (#E8D08A)
+ * Typografie: Cormorant Garamond (Display) + Lato (Body)
+ */
+
+@theme inline {
+  --radius-sm: calc(var(--radius) - 4px);
+  --radius-md: calc(var(--radius) - 2px);
+  --radius-lg: var(--radius);
+  --radius-xl: calc(var(--radius) + 4px);
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-card: var(--card);
+  --color-card-foreground: var(--card-foreground);
+  --color-popover: var(--popover);
+  --color-popover-foreground: var(--popover-foreground);
+  --color-primary: var(--primary);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-secondary: var(--secondary);
+  --color-secondary-foreground: var(--secondary-foreground);
+  --color-muted: var(--muted);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-accent: var(--accent);
+  --color-accent-foreground: var(--accent-foreground);
+  --color-destructive: var(--destructive);
+  --color-destructive-foreground: var(--destructive-foreground);
+  --color-border: var(--border);
+  --color-input: var(--input);
+  --color-ring: var(--ring);
+  --color-chart-1: var(--chart-1);
+  --color-chart-2: var(--chart-2);
+  --color-chart-3: var(--chart-3);
+  --color-chart-4: var(--chart-4);
+  --color-chart-5: var(--chart-5);
+  --color-sidebar: var(--sidebar);
+  --color-sidebar-foreground: var(--sidebar-foreground);
+  --color-sidebar-primary: var(--sidebar-primary);
+  --color-sidebar-primary-foreground: var(--sidebar-primary-foreground);
+  --color-sidebar-accent: var(--sidebar-accent);
+  --color-sidebar-accent-foreground: var(--sidebar-accent-foreground);
+  --color-sidebar-border: var(--sidebar-border);
+  --color-sidebar-ring: var(--sidebar-ring);
+}
+
+:root {
+  --radius: 0.4rem;
+
+  /* Schwarz als Primärfarbe */
+  --primary: oklch(0.12 0.005 60);
+  --primary-foreground: oklch(0.97 0.015 85);
+
+  /* Reinweiß / Off-White Hintergrund */
+  --background: oklch(0.99 0.003 85);
+  --foreground: oklch(0.10 0.008 50);
+
+  /* Karten – leicht warmes Weiß */
+  --card: oklch(1 0 0);
+  --card-foreground: oklch(0.10 0.008 50);
+
+  /* Popover */
+  --popover: oklch(1 0 0);
+  --popover-foreground: oklch(0.10 0.008 50);
+
+  /* Sekundär – sehr helles Gold/Creme */
+  --secondary: oklch(0.95 0.02 85);
+  --secondary-foreground: oklch(0.15 0.01 50);
+
+  /* Muted */
+  --muted: oklch(0.94 0.008 80);
+  --muted-foreground: oklch(0.48 0.02 60);
+
+  /* Akzent – Manus-Gold */
+  --accent: oklch(0.72 0.10 80);
+  --accent-foreground: oklch(0.10 0.008 50);
+
+  /* Destructive */
+  --destructive: oklch(0.577 0.245 27.325);
+  --destructive-foreground: oklch(0.985 0 0);
+
+  /* Border & Input */
+  --border: oklch(0.88 0.01 80);
+  --input: oklch(0.90 0.01 80);
+  --ring: oklch(0.72 0.10 80);
+
+  /* Charts */
+  --chart-1: oklch(0.72 0.10 80);
+  --chart-2: oklch(0.60 0.08 80);
+  --chart-3: oklch(0.50 0.06 80);
+  --chart-4: oklch(0.85 0.06 80);
+  --chart-5: oklch(0.40 0.05 60);
+
+  /* Sidebar */
+  --sidebar: oklch(0.10 0.008 50);
+  --sidebar-foreground: oklch(0.95 0.01 80);
+  --sidebar-primary: oklch(0.72 0.10 80);
+  --sidebar-primary-foreground: oklch(0.10 0.008 50);
+  --sidebar-accent: oklch(0.18 0.008 50);
+  --sidebar-accent-foreground: oklch(0.95 0.01 80);
+  --sidebar-border: oklch(0.25 0.008 50);
+  --sidebar-ring: oklch(0.72 0.10 80);
+
+  /* Custom design tokens – Manus Gold Palette */
+  --gold: #C9A84C;
+  --gold-light: #E8D08A;
+  --gold-dark: #9A7A2E;
+  --black-deep: #0D0D0D;
+  --black-soft: #1A1A1A;
+  --off-white: #FAFAF8;
+  --warm-white: #F5F3EE;
+  --ease-out-snappy: cubic-bezier(0.23, 1, 0.32, 1);
+}
+
+@layer base {
+  * {
+    @apply border-border outline-ring/50;
+  }
+  body {
+    @apply bg-background text-foreground;
+    font-family: 'Lato', sans-serif;
+    background-color: #FAFAF8;
+    color: #1A1A1A;
+  }
+  h1, h2, h3, h4 {
+    font-family: 'Cormorant Garamond', serif;
+    color: #0D0D0D;
+  }
+  button:not(:disabled),
+  [role="button"]:not([aria-disabled="true"]),
+  [type="button"]:not(:disabled),
+  [type="submit"]:not(:disabled),
+  [type="reset"]:not(:disabled),
+  a[href],
+  select:not(:disabled),
+  input[type="checkbox"]:not(:disabled),
+  input[type="radio"]:not(:disabled) {
+    @apply cursor-pointer;
+  }
+}
+
+@layer components {
+  .container {
+    width: 100%;
+    margin-left: auto;
+    margin-right: auto;
+    padding-left: 1rem;
+    padding-right: 1rem;
+  }
+
+  .flex {
+    min-height: 0;
+    min-width: 0;
+  }
+
+  @media (min-width: 640px) {
+    .container {
+      padding-left: 1.5rem;
+      padding-right: 1.5rem;
+    }
+  }
+
+  @media (min-width: 1024px) {
+    .container {
+      padding-left: 2rem;
+      padding-right: 2rem;
+      max-width: 1280px;
+    }
+  }
+
+  /* Gold gradient text utility */
+  .text-gold {
+    color: #C9A84C;
+  }
+
+  .text-gold-gradient {
+    background: linear-gradient(135deg, #C9A84C 0%, #E8D08A 50%, #9A7A2E 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+
+  /* Gold divider line */
+  .gold-divider {
+    height: 1px;
+    background: linear-gradient(90deg, transparent, #C9A84C, transparent);
+  }
+
+  /* Gold border */
+  .border-gold {
+    border-color: #C9A84C;
+  }
+
+  /* Dark section */
+  .section-dark {
+    background-color: #0D0D0D;
+    color: #FAFAF8;
+  }
+
+  .section-dark h1,
+  .section-dark h2,
+  .section-dark h3,
+  .section-dark h4 {
+    color: #E8D08A;
+  }
+
+  /* Animate on scroll utility */
+  .animate-on-scroll {
+    opacity: 0;
+    transform: translateY(24px);
+    transition: opacity 0.5s var(--ease-out-snappy), transform 0.5s var(--ease-out-snappy);
+  }
+
+  .animate-on-scroll.visible {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  /* Diagonal section divider */
+  .diagonal-top {
+    clip-path: polygon(0 5%, 100% 0, 100% 100%, 0 100%);
+    margin-top: -3rem;
+    padding-top: 5rem;
+  }
+
+  .diagonal-bottom {
+    clip-path: polygon(0 0, 100% 0, 100% 95%, 0 100%);
+    padding-bottom: 5rem;
+    margin-bottom: -3rem;
+  }
+}
+
+/* Smooth scroll */
+html {
+  scroll-behavior: smooth;
+}
+
+/* Custom scrollbar */
+::-webkit-scrollbar {
+  width: 6px;
+}
+::-webkit-scrollbar-track {
+  background: #FAFAF8;
+}
+::-webkit-scrollbar-thumb {
+  background: #C9A84C;
+  border-radius: 3px;
+}
