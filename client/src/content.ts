@@ -10,8 +10,8 @@
  *
  * Offene Punkte für den Go-Live (Stand der Übergabe):
  *   1. Kontakt: echte Telefonnummer + E-Mail bestätigen
- *   2. Seminar: aktueller Termin (der alte 04.–06.11.2025 ist abgelaufen),
- *      Frühbucher-Stichtag, Preise und Veranstaltungsort prüfen
+ *   2. Seminar: Termin 04.–06.11.2026 bestätigt; Frühbucher-Stichtag,
+ *      Preise und Veranstaltungsort noch prüfen
  *   3. Statistiken (1000+, 15 Jahre, 98 %, Anzahl Beschwerdebilder) verifizieren
  *   4. Impressum/Datenschutz: Inhaber, Anschrift, Telefon, USt-IdNr. eintragen
  *      (TMG §5 / DSGVO — Pflicht!) und Datenschutz rechtlich prüfen lassen
@@ -37,12 +37,12 @@ export const seminar = {
   level: "Basic",
   title: "Manus-Therapie Basic",
   subtitle: "Fundiertes Körperwissen in 3 Tagen – sofort anwendbar",
-  // TODO PLATZHALTER: Termin abgelaufen — neuen Seminartermin eintragen
-  dates: "3 Tage – 04. bis 06. November 2025",
+  // Seminartermin – mit Kunde bestätigt (November 2026)
+  dates: "3 Tage – 04. bis 06. November 2026",
   // Kurzform für das Auswahlfeld im Kontaktformular (mit Termin synchron halten)
-  datesShort: "04.–06. Nov. 2025",
+  datesShort: "04.–06. Nov. 2026",
   participants: "Max. 15 Personen",
-  // TODO PLATZHALTER: Frühbucher-Stichtag abgelaufen — aktualisieren oder entfernen
+  // TODO: Frühbucher-Stichtag (15. Juli) und Rabattbetrag mit Kunde bestätigen
   fruehbucher: "10% Frühbucherrabatt bis 15. Juli – nur 675 € netto (803,25 € brutto)",
   // TODO PLATZHALTER: Veranstaltungsort mit Kunde bestätigen
   location: "Fortbildungsakademie Plesch, Goltsteinstraße 91, 50968 Köln",
