@@ -1,5 +1,9 @@
 {
   "buildCommand": "pnpm build:static",
   "outputDirectory": "dist/public",
-  "rewrites": [{ "source": "/(.*)", "destination": "/index.html" }]
+  "regions": ["fra1"],
+  "functions": {
+    "api/contact.ts": { "maxDuration": 30 }
+  },
+  "rewrites": [{ "source": "/((?!api/).*)", "destination": "/index.html" }]
 }

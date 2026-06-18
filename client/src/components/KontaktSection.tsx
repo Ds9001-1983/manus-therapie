@@ -8,14 +8,20 @@ import { site, seminar as seminarData } from "@/content";
 
 export default function KontaktSection() {
   const sectionRef = useRef<HTMLDivElement>(null);
-  const [formData, setFormData] = useState({
+  const emptyForm = {
     name: "",
     email: "",
     telefon: "",
     seminar: "",
     nachricht: "",
-  });
+    website2: "", // Honeypot — bleibt für echte Nutzer leer
+  };
+  const [formData, setFormData] = useState(emptyForm);
+  const [consent, setConsent] = useState(false);
   const [submitted, setSubmitted] = useState(false);
+  const [loading, setLoading] = useState(false);
+  const [error, setError] = useState<string | null>(null);
+  const submitLock = useRef(false); // Guard gegen schnellen Doppel-Submit (Enter halten)
 
   useEffect(() => {
     const observer = new IntersectionObserver(
@@ -35,15 +41,48 @@ export default function KontaktSection() {
     return () => observer.disconnect();
   }, []);
 
-  // ⚠️ TODO PLATZHALTER — VERSAND NOCH NICHT VERDRAHTET
-  // Das Formular sendet aktuell NICHTS: handleSubmit zeigt nur die "Vielen Dank"-
-  // Bestätigung, ohne die Daten irgendwohin zu übertragen — Anfragen gehen also
-  // verloren. Die finale Versand-Strategie (Formdienst / eigenes Backend / mailto)
-  // wird nach Rücksprache mit dem Kunden festgelegt.
-  // → NICHT live nehmen, solange hier kein echter Versand angebunden ist.
-  const handleSubmit = (e: React.FormEvent) => {
+  // Versand an die Serverless-Funktion /api/contact, die per SMTP direkt über das
+  // Postfach der Akademie mailt (siehe api/contact.ts). Voraussetzung für den
+  // Live-Betrieb: die SMTP_*-Environment-Variablen sind bei Vercel hinterlegt.
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    setSubmitted(true);
+    if (submitLock.current) return; // Doppel-Submit abblocken (vor State-Re-Render)
+    submitLock.current = true;
+    setError(null);
+    setLoading(true);
+    try {
+      const res = await fetch("/api/contact", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ ...formData, consent }),
+      });
+      if (!res.ok) {
+        const data = await res.json().catch(() => ({}));
+        throw new Error(
+          data.error || "Versand fehlgeschlagen. Bitte später erneut versuchen."
+        );
+      }
+      // Erfolg: PII nicht unnötig im State halten (Datensparsamkeit).
+      setFormData(emptyForm);
+      setConsent(false);
+      setSubmitted(true);
+    } catch (err) {
+      setError(
+        err instanceof Error
+          ? err.message
+          : "Versand fehlgeschlagen. Bitte später erneut versuchen."
+      );
+    } finally {
+      setLoading(false);
+      submitLock.current = false;
+    }
+  };
+
+  const resetForm = () => {
+    setSubmitted(false);
+    setError(null);
+    setFormData(emptyForm);
+    setConsent(false);
   };
 
   return (
@@ -178,6 +217,14 @@ export default function KontaktSection() {
                 >
                   Ihre Anfrage ist eingegangen. Wir melden uns innerhalb von 24 Stunden bei Ihnen.
                 </p>
+                <button
+                  type="button"
+                  onClick={resetForm}
+                  className="mt-6 text-sm text-[#C9A84C] hover:underline"
+                  style={{ fontFamily: "'Lato', sans-serif", fontWeight: 700 }}
+                >
+                  Weitere Anfrage senden
+                </button>
               </div>
             ) : (
               <form
@@ -275,21 +322,72 @@ export default function KontaktSection() {
                   />
                 </div>
 
+                {/* Honeypot: aria-hidden am Wrapper (nicht am fokussierbaren Input),
+                    neutraler Feldname + kein Autofill, damit echte Nutzer das Feld
+                    nie befüllen. Befüllt = Bot. */}
+                <div
+                  aria-hidden="true"
+                  style={{ position: "absolute", left: "-9999px", width: 1, height: 1, overflow: "hidden" }}
+                >
+                  <label>
+                    Bitte dieses Feld leer lassen
+                    <input
+                      type="text"
+                      name="website2"
+                      tabIndex={-1}
+                      autoComplete="off"
+                      value={formData.website2}
+                      onChange={(e) => setFormData({ ...formData, website2: e.target.value })}
+                    />
+                  </label>
+                </div>
+
+                {/* DSGVO-Einwilligung */}
+                <label
+                  className="flex items-start gap-3 mb-5 cursor-pointer text-[#1A1A1A]/70 text-xs leading-relaxed"
+                  style={{ fontFamily: "'Lato', sans-serif" }}
+                >
+                  <input
+                    type="checkbox"
+                    required
+                    checked={consent}
+                    onChange={(e) => setConsent(e.target.checked)}
+                    className="mt-0.5 h-4 w-4 flex-shrink-0 accent-[#C9A84C]"
+                  />
+                  <span>
+                    Ich habe die{" "}
+                    <a
+                      href="/datenschutz"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="underline hover:text-[#C9A84C]"
+                    >
+                      Datenschutzerklärung
+                    </a>{" "}
+                    gelesen und stimme der Verarbeitung meiner Daten zur Bearbeitung
+                    meiner Anfrage zu.
+                  </span>
+                </label>
+
+                {error && (
+                  <p
+                    className="mb-4 text-sm text-red-700 bg-red-50 border border-red-200 rounded-sm px-4 py-3"
+                    style={{ fontFamily: "'Lato', sans-serif" }}
+                    role="alert"
+                  >
+                    {error}
+                  </p>
+                )}
+
                 <button
                   type="submit"
-                  className="w-full flex items-center justify-center gap-2 px-8 py-4 bg-[#C9A84C] text-black font-bold text-sm tracking-wide rounded-sm hover:bg-[#E8D08A] transition-all duration-200 active:scale-[0.98] shadow-lg shadow-[#C9A84C]/25"
+                  disabled={loading}
+                  className="w-full flex items-center justify-center gap-2 px-8 py-4 bg-[#C9A84C] text-black font-bold text-sm tracking-wide rounded-sm hover:bg-[#E8D08A] transition-all duration-200 active:scale-[0.98] shadow-lg shadow-[#C9A84C]/25 disabled:opacity-60 disabled:cursor-not-allowed disabled:active:scale-100"
                   style={{ fontFamily: "'Lato', sans-serif" }}
                 >
                   <Send size={16} />
-                  Anfrage senden
+                  {loading ? "Wird gesendet …" : "Anfrage senden"}
                 </button>
-
-                <p
-                  className="text-center text-[#1A1A1A]/40 text-xs mt-4"
-                  style={{ fontFamily: "'Lato', sans-serif" }}
-                >
-                  Mit dem Absenden stimmen Sie unserer Datenschutzerklärung zu.
-                </p>
               </form>
             )}
           </div>
