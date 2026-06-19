@@ -41,10 +41,9 @@ export default function Navbar() {
           {/* Logo */}
           <a href="#" className="flex items-center group">
             <img
-              src="/images/manus_therapie_logo.jpg"
+              src="/images/manus-therapie-logo.png"
               alt="Manus-Therapie – Massage und Trainingstherapie"
               className="h-10 md:h-12 w-auto object-contain"
-              style={{ filter: "brightness(1.05) contrast(1.05)" }}
             />
           </a>
 

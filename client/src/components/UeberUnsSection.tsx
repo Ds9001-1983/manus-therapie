@@ -113,8 +113,7 @@ export default function UeberUnsSection() {
             >
               Unsere Dozenten sind erfahrene Wellness-Therapeuten und Körperwissen-Experten,
               die ihr Wissen verständlich und praxisnah vermitteln. Keine trockene Theorie –
-              sondern Wissen, das Sie sofort anwenden können. Alle Inhalte sind rechtssicher
-              als Wellnessleistung konzipiert, ohne Heilversprechen.
+              sondern Wissen, das Sie sofort anwenden können.
             </p>
           </div>
         </div>

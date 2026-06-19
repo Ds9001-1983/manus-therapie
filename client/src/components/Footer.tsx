@@ -3,6 +3,7 @@
  */
 import { Link } from "wouter";
 import { site } from "@/content";
+import SocialLinks from "./SocialLinks";
 
 export default function Footer() {
   return (
@@ -16,10 +17,9 @@ export default function Footer() {
           <div className="md:col-span-2">
             <div className="mb-5">
               <img
-                src="/images/manus_therapie_logo.jpg"
+                src="/images/manus-therapie-logo.png"
                 alt="Manus-Therapie – Massage und Trainingstherapie"
                 className="h-14 w-auto object-contain"
-                style={{ filter: "brightness(1.1) contrast(1.05)" }}
               />
             </div>
             <p
@@ -34,6 +34,9 @@ export default function Footer() {
               <span className="text-[#C9A84C] text-xs tracking-widest uppercase" style={{ fontFamily: "'Lato', sans-serif" }}>
                 Massage und Trainingstherapie
               </span>
+            </div>
+            <div className="mt-6">
+              <SocialLinks variant="light" />
             </div>
           </div>
 
@@ -85,6 +88,16 @@ export default function Footer() {
               <li>
                 <Link href="/datenschutz">
                   <span className="text-sm text-white/50 hover:text-[#C9A84C] transition-colors cursor-pointer" style={{ fontFamily: "'Lato', sans-serif" }}>Datenschutz</span>
+                </Link>
+              </li>
+              <li>
+                <Link href="/widerruf">
+                  <span className="text-sm text-white/50 hover:text-[#C9A84C] transition-colors cursor-pointer" style={{ fontFamily: "'Lato', sans-serif" }}>Widerruf</span>
+                </Link>
+              </li>
+              <li>
+                <Link href="/agb">
+                  <span className="text-sm text-white/50 hover:text-[#C9A84C] transition-colors cursor-pointer" style={{ fontFamily: "'Lato', sans-serif" }}>AGB</span>
                 </Link>
               </li>
             </ul>

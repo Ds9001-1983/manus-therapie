@@ -79,7 +79,7 @@ export default function HeroSection() {
           >
             Lernen Sie, wie Sie Ihre Klienten bei häufigen Beschwerdebildern ganzheitlich begleiten können –
             als qualifizierter Wellness-Therapeut mit fundiertem Körperwissen. Keine Vorkenntnisse nötig,
-            keine Heilversprechen – dafür echter Mehrwert für Ihre Klienten.
+            dafür echter Mehrwert für Ihre Klienten.
           </p>
 
           {/* CTA Buttons */}

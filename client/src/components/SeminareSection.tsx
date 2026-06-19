@@ -73,7 +73,7 @@ export default function SeminareSection() {
             className="text-[#1A1A1A]/65 text-lg leading-relaxed"
             style={{ fontFamily: "'Lato', sans-serif", fontWeight: 300 }}
           >
-            Starten Sie mit dem Manus-Therapie Basic – in drei intensiven Tagen erhalten
+            Starten Sie mit dem Manus-Therapie Basic – in zwei intensiven Tagen erhalten
             Sie das Wissen und die Techniken, die Sie sofort in Ihrer Praxis einsetzen können.
           </p>
         </div>

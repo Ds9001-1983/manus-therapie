@@ -3,8 +3,9 @@
  * Kontakt: Anmeldeformular + Kontaktdaten
  */
 import { useEffect, useRef, useState } from "react";
-import { Mail, Phone, MapPin, Send } from "lucide-react";
+import { Mail, MapPin, Send } from "lucide-react";
 import { site, seminar as seminarData } from "@/content";
+import SocialLinks from "./SocialLinks";
 
 export default function KontaktSection() {
   const sectionRef = useRef<HTMLDivElement>(null);
@@ -141,12 +142,6 @@ export default function KontaktSection() {
             <div className="flex flex-col gap-5">
               {[
                 {
-                  icon: Phone,
-                  label: "Telefon",
-                  value: site.phone,
-                  href: site.phoneHref,
-                },
-                {
                   icon: Mail,
                   label: "E-Mail",
                   value: site.email,
@@ -191,7 +186,16 @@ export default function KontaktSection() {
               ))}
             </div>
 
-
+            {/* Social Media */}
+            <div className="mt-8">
+              <div
+                className="text-[#1A1A1A]/50 text-xs tracking-wide uppercase mb-3"
+                style={{ fontFamily: "'Lato', sans-serif", fontWeight: 700 }}
+              >
+                Folgen Sie uns
+              </div>
+              <SocialLinks variant="dark" />
+            </div>
           </div>
 
           {/* Formular */}
@@ -299,7 +303,7 @@ export default function KontaktSection() {
                       style={{ fontFamily: "'Lato', sans-serif" }}
                     >
                       <option value="">Bitte wählen ...</option>
-                      <option value="basic">{seminarData.title} (3 Tage) – {seminarData.datesShort}</option>
+                      <option value="basic">{seminarData.title} (2 Tage) – {seminarData.datesShort}</option>
                       <option value="info">Allgemeine Anfrage</option>
                     </select>
                   </div>

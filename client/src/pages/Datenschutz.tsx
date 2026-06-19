@@ -52,11 +52,11 @@ export default function Datenschutz() {
             <p className="text-[#1A1A1A]/80 leading-relaxed">
               Die verantwortliche Stelle für die Datenverarbeitung auf dieser Website ist:<br /><br />
               <strong>{legal.betreiber}</strong><br />
-              {legal.inhaber}<br />
-              {legal.strasse}<br />
-              {legal.plzOrt}<br />
+              {legal.verantwortlich.name}<br />
+              {legal.verantwortlich.strasse}<br />
+              {legal.verantwortlich.plzOrt}<br />
               {legal.land}<br /><br />
-              Telefon: {legal.telefon}<br />
+              Telefon: {legal.verantwortlich.telefon}<br />
               E-Mail: {legal.email}
             </p>
           </section>
