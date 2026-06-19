@@ -31,7 +31,7 @@ export const site = {
   // TODO PLATZHALTER: echte Profil-URLs eintragen. Leer ("") = Icon wird ausgeblendet.
   social: {
     instagram: "https://www.instagram.com/manustherapie/",
-    facebook: "",
+    facebook: "https://www.facebook.com/profile.php?id=61590960301426",
     tiktok: "",
   },
 } as const;
