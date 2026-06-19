@@ -30,7 +30,7 @@ export const site = {
   // Social-Profile für Startseite (Kontakt) & Footer.
   // TODO PLATZHALTER: echte Profil-URLs eintragen. Leer ("") = Icon wird ausgeblendet.
   social: {
-    instagram: "",
+    instagram: "https://www.instagram.com/manustherapie/",
     facebook: "",
     tiktok: "",
   },
