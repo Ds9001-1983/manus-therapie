@@ -91,11 +91,6 @@ export default function Footer() {
                 </Link>
               </li>
               <li>
-                <Link href="/widerruf">
-                  <span className="text-sm text-white/50 hover:text-[#C9A84C] transition-colors cursor-pointer" style={{ fontFamily: "'Lato', sans-serif" }}>Widerruf</span>
-                </Link>
-              </li>
-              <li>
                 <Link href="/agb">
                   <span className="text-sm text-white/50 hover:text-[#C9A84C] transition-colors cursor-pointer" style={{ fontFamily: "'Lato', sans-serif" }}>AGB</span>
                 </Link>
