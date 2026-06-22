@@ -3,9 +3,6 @@
  * -----------------------------------------------------------------------------
  * Vom Kunden gelieferter AGB-Text (Stand: Juni 2026), originalgetreu eingesetzt.
  * Hinweis laut Kunde: rechtliche Prüfung durch einen Rechtsanwalt wird empfohlen.
- * OFFENER PUNKT: § 3 Abs. 4 nennt als Frühbucher-Stichtag "15. Juli 2025" – das
- * liegt vor dem Seminartermin (Nov. 2026) und ist vermutlich ein Tippfehler
- * (2026?). Wert bewusst originalgetreu übernommen, mit Kunde klären.
  */
 import { Link } from "wouter";
 import { ArrowLeft } from "lucide-react";
@@ -105,7 +102,7 @@ export default function AGB() {
               Bei Anmeldungen, die weniger als 14 Tage vor Seminarbeginn eingehen, ist die Gebühr sofort fällig.
             </p>
             <p className={`${p} mt-3`}>
-              (4) Bei Zahlung bis zum 15. Juli 2025 gilt ein Frühbucherrabatt von 10 %. Der Frühbucherpreis
+              (4) Bei Zahlung bis zum 15. Juli 2026 gilt ein Frühbucherrabatt von 10 %. Der Frühbucherpreis
               beträgt 675,00 € netto (803,25 € brutto inkl. 19 % MwSt.).
             </p>
             <p className={`${p} mt-3`}>

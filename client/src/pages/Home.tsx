@@ -5,6 +5,7 @@
  */
 import Navbar from "@/components/Navbar";
 import HeroSection from "@/components/HeroSection";
+import VideoIntroSection from "@/components/VideoIntroSection";
 import AlleinstellungSection from "@/components/AlleinstellungSection";
 import KrankheitsbilderSection from "@/components/KrankheitsbilderSection";
 import HinweisSection from "@/components/HinweisSection";
@@ -21,6 +22,7 @@ export default function Home() {
     <div className="min-h-screen">
       <Navbar />
       <HeroSection />
+      <VideoIntroSection />
       <AlleinstellungSection />
       <DozentenSection />
       <KrankheitsbilderSection />

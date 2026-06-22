@@ -46,12 +46,12 @@ export const seminar = {
   // Kurzform für das Auswahlfeld im Kontaktformular (mit Termin synchron halten)
   datesShort: "2.–3. Nov. 2026",
   participants: "Max. 15 Personen",
-  // TODO: Frühbucher-Stichtag (15. Juli) und Rabattbetrag mit Kunde bestätigen
-  fruehbucher: "10% Frühbucherrabatt bis 15. Juli – nur 675 € netto (803,25 € brutto)",
+  // Frühbucher-Stichtag & -preis durch AGB § 3 Abs. 4 bestätigt
+  fruehbucher: "10% Frühbucherrabatt bis 15. Juli 2026 – nur 675 € netto (803,25 € brutto)",
   // TODO PLATZHALTER: Veranstaltungsort mit Kunde bestätigen
   location: "Fortbildungsakademie Plesch, Goltsteinstraße 91, 50968 Köln",
   cert: "Zertifikat inklusive",
-  // TODO PLATZHALTER: Preise prüfen
+  // Preise durch AGB § 3 Abs. 2 bestätigt: 750 € netto / 892,50 € brutto (2 Seminartage)
   price: "750",
   priceGross: "892,50",
   topics: [

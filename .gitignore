@@ -17,6 +17,10 @@ pnpm-debug.log*
 .env.local
 .env.*.local
 
+# Roh-Videodateien im Projekt-Root (nur das komprimierte
+# client/public/videos/ wird ausgeliefert/getrackt)
+/Video *.mp4
+
 # Betriebssystem / Editor
 .DS_Store
 *.swp
